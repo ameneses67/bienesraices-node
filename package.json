@@ -3,17 +3,25 @@
   "version": "1.0.0",
   "description": "Página de bienes raíces con Node",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ameneses67/bienesraices-nodejs.git"
+    "url": "git+https://github.com/ameneses67/bienesraices-node.git"
   },
   "author": "Alfonso Meneses",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ameneses67/bienesraices-nodejs/issues"
+    "url": "https://github.com/ameneses67/bienesraices-node/issues"
   },
-  "homepage": "https://github.com/ameneses67/bienesraices-nodejs#readme"
+  "homepage": "https://github.com/ameneses67/bienesraices-node#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
 }
