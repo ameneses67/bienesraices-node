@@ -10,10 +10,19 @@ const formularioRegistro = (req, res) => {
   });
 };
 
+const registrar = (req, res) => {
+  console.log("Registrando...");
+};
+
 const formularioRecuperacionPassword = (req, res) => {
   res.render("auth/recuperacion-password", {
     pagina: "Recupera tu Constraseña",
   });
 };
 
-export { formularioLogin, formularioRegistro, formularioRecuperacionPassword };
+export {
+  formularioLogin,
+  formularioRegistro,
+  formularioRecuperacionPassword,
+  registrar,
+};
