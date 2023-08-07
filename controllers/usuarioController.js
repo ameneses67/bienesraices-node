@@ -1,6 +1,7 @@
 import { check, validationResult } from "express-validator";
 
 import Usuario from "../models/Usuario.js";
+import { generarId } from "../helpers/tokens.js";
 
 const formularioLogin = (req, res) => {
   res.render("auth/login", {
@@ -65,14 +66,19 @@ const registrar = async (req, res) => {
     });
   }
 
-  console.log(existeUsuario);
-
   // Crear usuario
   await Usuario.create({
     nombre,
     email,
     password,
-    token: 123,
+    token: generarId(),
+  });
+
+  // Mostrar mensaje de confirmación
+  res.render("templates/mensaje", {
+    pagina: "Cuenta creada correctamente",
+    mensaje:
+      "Hemos enviado un email de confirmación, presiona el botón para confirmar",
   });
 };
 
