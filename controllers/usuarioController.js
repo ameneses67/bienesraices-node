@@ -35,30 +35,32 @@ const registrar = async (req, res) => {
 
   let resultado = validationResult(req);
 
+  const { nombre, email, password } = req.body;
+
   if (!resultado.isEmpty()) {
     // Errores
     return res.render("auth/registro", {
       pagina: "Crear Cuenta",
       errores: resultado.array(),
       usuario: {
-        nombre: req.body.nombre,
-        email: req.body.email,
+        nombre,
+        email,
       },
     });
   }
 
   // Validar que el correo no exista en la bd
   const existeUsuario = await Usuario.findOne({
-    where: { email: req.body.email },
+    where: { email },
   });
 
   if (existeUsuario) {
     return res.render("auth/registro", {
       pagina: "Crear Cuenta",
-      errores: [{ msg: "El usuario ya existe con ese correo" }],
+      errores: [{ msg: "Ya existe un usuario con este correo" }],
       usuario: {
-        nombre: req.body.nombre,
-        email: req.body.email,
+        nombre,
+        email,
       },
     });
   }
@@ -66,9 +68,12 @@ const registrar = async (req, res) => {
   console.log(existeUsuario);
 
   // Crear usuario
-  const usuario = await Usuario.create(req.body);
-
-  res.json(usuario);
+  await Usuario.create({
+    nombre,
+    email,
+    password,
+    token: 123,
+  });
 };
 
 const formularioRecuperacionPassword = (req, res) => {
